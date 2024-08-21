@@ -5,7 +5,7 @@ from PIL import Image, UnidentifiedImageError
 from dotenv import load_dotenv
 from openai import OpenAI
 from typing import List, Dict, Union
-from config import SIZE, SYSTEM_PROMPT
+from src.config import SIZE, SYSTEM_PROMPT
 
 # Load environment variables
 load_dotenv()

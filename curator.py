@@ -1,7 +1,7 @@
 import os
 import argparse
-from utils import img2text
-from config import (
+from src.utils import img2text
+from src.config import (
     IMAGE_FOLDER, 
     CAPTION_FOLDER, 
     VALID_EXTENSIONS
