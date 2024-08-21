@@ -1,9 +1,21 @@
 import os
 import argparse
 from utils import img2text
-from config import IMAGE_FOLDER, CAPTION_FOLDER, VALID_EXTENSIONS
+from config import (
+    IMAGE_FOLDER, 
+    CAPTION_FOLDER, 
+    VALID_EXTENSIONS
+)
 
-def process_images(image_folder, caption_folder, subject_name=None):
+def process_images(image_folder: str, caption_folder: str, subject_name: str=None) -> None:
+    """
+    Process all images in the given folder, generating captions for each and saving them to the specified folder.
+
+    Args:
+        image_folder (str): The path to the folder containing the images to process.
+        caption_folder (str): The path to the folder to save the generated captions.
+        subject_name (str, optional): The name of the subject in the images. Defaults to None.
+    """
     # Get all image paths with valid extensions
     image_paths = [
         os.path.join(image_folder, image)
