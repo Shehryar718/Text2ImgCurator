@@ -41,12 +41,13 @@ def run_api(
         print(f"Error while communicating with OpenAI API: {e}")
         return None
 
-def img2text(path: str) -> Union[str, None]:
+def img2text(path: str, subject_name: str=None) -> Union[str, None]:
     """
     Convert an image at the given path to text using the OpenAI API.
 
     Args:
         path (str): The path to the image file.
+        subject_name (str, optional): The name of the subject in the image.
 
     Returns:
         Union[str, None]: The generated caption for the image, or None if an error occurs.
@@ -92,8 +93,12 @@ def img2text(path: str) -> Union[str, None]:
     # Create the message list for the API request
     messages: List[Dict[str, Union[str, List[Dict[str, str]]]]] = [
         {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user", "content": [img_dict]}
+        {"role": "user", "content": [img_dict]},
     ]
+
+    if subject_name:
+        subject_prompt = f"Whenever the main subject appears, explicitly use the name '{subject_name}' rather than generic terms like 'man,' 'girl,' 'person,' or similar descriptors."
+        messages.append({"role": "user", "content": subject_prompt})
 
     # Get and return the caption
     return run_api(messages)
